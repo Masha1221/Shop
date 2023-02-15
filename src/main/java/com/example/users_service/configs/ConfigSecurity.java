@@ -17,7 +17,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeRequests()
-                .antMatchers("/users/orders/**")
+                .antMatchers("/users/orders**")
                 .authenticated()
                 .and()
                 .httpBasic();

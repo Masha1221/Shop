@@ -24,11 +24,11 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         UsernamePasswordAuthenticationToken upAuth = (UsernamePasswordAuthenticationToken) authentication;
-        String name = (String) authentication.getPrincipal();
+        String login = (String) authentication.getPrincipal();
 
         String password = (String) upAuth.getCredentials();
 
-        String storedPassword = userRepository.findUserEntitiesByName(name).map(UserEntity::getPassword)
+        String storedPassword = userRepository.findUserEntityByLogin(login).map(UserEntity::getPassword)
                 .orElseThrow(() -> new BadCredentialsException("Illegal id or passowrd"));
 
         if (Objects.equals(password, "") || !Objects.equals(password, storedPassword)) {

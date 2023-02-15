@@ -14,8 +14,9 @@ public interface OrdersClientService {
     @GetMapping(value = "/users/{id}/orders")
     List<OrderDto> getAllOrdersForUser(@PathVariable(value = "id") Integer userId);
 
-    @PutMapping(value = "/users/{orderId}/orders/{userId}")
-    void updateStatusOrderByUserId(@RequestBody OrderDto orderDto, @PathVariable Integer orderId,
-                                   @PathVariable Integer userId);
+    @PutMapping(value = "/users/{userId}/orders/{orderId}")
+    void updateStatusOrderByUserId(@RequestBody OrderDto orderDto,
+                                   @PathVariable Integer userId,
+                                   @PathVariable Integer orderId);
 }
 

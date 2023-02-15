@@ -21,16 +21,15 @@ public class OrdersClientController {
         log.info("Order {} for user with ID - {} is created.", orderDto, orderDto.getUserId());
     }
 
-    @GetMapping("/users/{id}/orders")
-    public List<OrderDto> getAllOrdersByUserId(@PathVariable(value = "id") Integer userId) {
-        return usersService.getAllOrdersByUserId(userId);
+    @GetMapping("/users/orders")
+    public List<OrderDto> getAllOrdersByUserId() {
+        return usersService.getAllOrdersForUser();
     }
 
-    @PutMapping("/users/{orderId}/orders/{userId}")
+    @PutMapping("/users/orders/{orderId}")
     public void updateStatusOrderByUserId(@RequestBody OrderDto orderDto,
-                                          @PathVariable Integer orderId,
-                                          @PathVariable Integer userId) {
-        usersService.updateStatusOrderByUserId(orderDto, orderId, userId);
+                                          @PathVariable Integer orderId) {
+       usersService.updateStatusOrderForUser(orderDto,orderId);
         log.info("New order status {} ", orderDto.getStatus());
     }
 }
